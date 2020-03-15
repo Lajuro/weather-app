@@ -8,6 +8,7 @@ const geocode = require('./utils/geocode');
 
 // This variable creates an app using express.
 const app = express();
+const port = process.env.PORT || 3000;
 
 // Define the paths for Express config
 const publicDirectoryPath = path.join(__dirname, '../public'); // This public directory is to make the root where you can use to find files, like imgs, style sheets and JavaScript Client Side files
@@ -112,7 +113,6 @@ app.get('*', (req, res) => {
     });
 });
 
-
-app.listen(3000, () => {
-    console.log('Server is up and ruinning on port 3000.');
+app.listen(port, () => {
+    console.log(`Server is up and ruinning on port ${port}.`);
 });

@@ -8,7 +8,7 @@ weatherForm.addEventListener('submit', (e) => {
     messageTwo.innerHTML = "";
 
     e.preventDefault();
-    fetch(`./weather?address=${weatherForm.address.value}`).then((response) => {
+    fetch(`/weather?address=${weatherForm.address.value}`).then((response) => {
         response.json().then((data) => {
             if (data.error) {
                 messageOne.innerHTML = data.error;
