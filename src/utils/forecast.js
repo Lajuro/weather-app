@@ -5,7 +5,7 @@ const forecast = (latitude, longitude, callback) => {
     const url = `https://api.darksky.net/forecast/${apiKey}/${latitude},${longitude}?units=si`;
 
     request({url, json: true}, (error, {body}) => {
-        const {daily, currently} = body;
+        const {daily, currently, timezone} = body;
         const {summary} = daily;
         const {temperature, precipProbability} = currently;
 
@@ -14,11 +14,12 @@ const forecast = (latitude, longitude, callback) => {
         } else if (body.error) {
             callback('Unable to find location!', undefined);
         } else {
+            console.log(body);
             callback(undefined, {
-                summary: summary,
-                temperature: temperature,
-                precipitationProbability: precipProbability,
-                message: `${summary}\nIt is currently ${temperature}°C degree out there. There is a ${precipProbability}% chance of rain.`,
+                summary,
+                temperature,
+                precipProbability,
+                message: `${summary}\nIt is currently ${temperature}°C degree out there. There is a ${precipProbability}% chance of rain. The timezone is ${timezone}.`,
                 url
             });
         }
